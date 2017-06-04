@@ -36,9 +36,9 @@ func SetupMiddlewares(app *macaron.Macaron) {
 		Funcs:     template.FuncMaps(),
 	}))
 	app.Use(macaron.Renderer(macaron.RenderOptions{
-    	Directory: "public/templates",
-    	Funcs:     template.FuncMaps(),
-    }))
+		Directory: "public/templates",
+		Funcs:     template.FuncMaps(),
+	}))
 	app.Use(mcache.Cacher(
 		cache.Option(conf.Cfg.Section("").Key("cache_adapter").Value()),
 	))
@@ -50,5 +50,10 @@ func SetupMiddlewares(app *macaron.Macaron) {
 func SetupRoutes(app *macaron.Macaron) {
 	app.Get("", func() string {
 		return "Mercurius Works!"
+	})
+
+	app.Group("/api/v1", func() {
+		app.Get("/categorias", handler.GetCategoria)
+		app.Get("/contratos", handler.GetContrato)
 	})
 }
