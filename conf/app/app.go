@@ -53,7 +53,7 @@ func SetupRoutes(app *macaron.Macaron) {
 	})
 
 	app.Group("/api/v1", func() {
-		app.Get("/categorias", handler.GetCategoria)
+		app.Get("/produtosservicos", handler.GetProdutoServico)
 		app.Get("/contratos", handler.GetContrato)
 	})
 }
